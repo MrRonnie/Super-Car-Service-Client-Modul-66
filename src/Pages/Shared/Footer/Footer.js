@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <footer>
       <p>
-        <small>Copyright @ / dynamic year/</small>
+        <small>Copyright © {new Date().getFullYear()} </small>
       </p>
     </footer>
   );
