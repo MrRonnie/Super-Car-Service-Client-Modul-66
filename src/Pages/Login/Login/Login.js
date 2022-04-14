@@ -19,8 +19,8 @@ const Login = () => {
   };
 
   return (
-    <div className="container w-50 mx-auto ">
-      <h2 className="text-primary text-center mt-5">Please Login</h2>
+    <div className="container w-50 mx-auto border mt-5 shadow border-light">
+      <h2 className="text-primary text-center mt-3">Please Login</h2>
       <Form>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
@@ -51,7 +51,7 @@ const Login = () => {
           Submit
         </Button>
       </Form>
-      <p>
+      <p className="mt-2">
         Don't have an account?
         <Link
           to="/register"
