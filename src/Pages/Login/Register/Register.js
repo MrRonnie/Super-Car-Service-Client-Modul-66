@@ -48,14 +48,21 @@ const Register = () => {
           required
         />
 
-        <input type="submit" value="Register" />
+        <input type="checkbox" name="terms" id="terms" />
+        <label htmlFor="terms">Accept Terms and Conditions</label>
+
+        <input
+          className="btn btn-secondary mt-3 shadow-lg w-50  mx-auto"
+          type="submit"
+          value="Register"
+        />
       </form>
 
       <p>
         Already have an account?
         <Link
           to="/login"
-          className="text-danger text-decoration-none"
+          className="text-primary text-decoration-none"
           onClick={navigateLogin}
         >
           Please Login
