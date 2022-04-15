@@ -12,6 +12,14 @@ const Login = () => {
   const location = useLocation();
 
   let from = location.state?.from?.pathname || "/";
+  let errorElement;
+  if (error) {
+    errorElement = (
+      <div>
+        <p className="text-danger">Error: {error?.message}</p>
+      </div>
+    );
+  }
 
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
@@ -65,6 +73,7 @@ const Login = () => {
           Submit
         </Button>
       </Form>
+      {errorElement}
       <p className="mt-2">
         Don't have an account?
         <Link
