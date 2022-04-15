@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import "./Register.css";
 import auth from "../../../firebase.init";
 import SocialLogin from "../SocialLogin/SocialLogin";
+
 const Register = () => {
+  const [agree, setAgree] = useState(false);
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
 
@@ -24,7 +26,9 @@ const Register = () => {
     const email = event.target.email.value;
     const password = event.target.password.value;
 
-    createUserWithEmailAndPassword(email, password);
+    if (agree) {
+      createUserWithEmailAndPassword(email, password);
+    }
   };
   return (
     <div className="register-form">
@@ -48,10 +52,29 @@ const Register = () => {
           required
         />
 
-        <input type="checkbox" name="terms" id="terms" />
-        <label htmlFor="terms">Accept Terms and Conditions</label>
+        <input
+          onClick={() => setAgree(!agree)}
+          type="checkbox"
+          name="terms"
+          id="terms"
+        />
+        {/* ternary operation -- ? "" : "" */}
+        {/* <label
+          className={agree ? "ps-2 text-primary" : "ps-2 text-danger"}
+          htmlFor="terms"
+        >
+          Accept Terms and Conditions
+        </label> */}
+        <label
+          className={`ps-2 ${agree ? "text-primary" : ""}`}
+          htmlFor="terms"
+        >
+          Accept Terms and Conditions
+        </label>
 
         <input
+          //  by using disable we can make buttons Not clickable if the user not agree with the Terms or what ever condition we give !!
+          disabled={!agree}
           className="btn btn-secondary mt-3 shadow-lg w-50  mx-auto"
           type="submit"
           value="Register"
